@@ -1,0 +1,1 @@
+Android telefonlar için geliştirdiğim pos uygulaması. Ürün ekleyip güncelleme özelliği var. Satış için kamera kullanılmakta. Ayrı bir stok takip sayfası bulunmakta. Şu an için local'de mysql ile çalışıyor. Duruma bağlı cloud database'e geçilebilir. Geliştirmeye devam ettiğim bir proje.
