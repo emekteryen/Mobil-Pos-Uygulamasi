@@ -1,52 +1,45 @@
-# Prerequisites
-*.d
-
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
+# Genel .NET ve Visual Studio dosyaları
+bin/
+obj/
+.vscode/
+.vs/
+*.user
+*.suo
+*.cache
+*.csproj.user
+*.dbmdl
 *.pdb
+*.ilk
+*.log
+*.tlog
+*.ipch
+*.aps
+*.ncb
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+*.DotSettings.user
+*.rsuser
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# MAUI ve Xamarin özel dosyaları
+**/*.userprefs
+**/*.vsixmanifest
+**/*.vsix
+**/*.xcworkspace/
+**/*.xcuserstate
+**/packages/
+**/node_modules/
+**/platforms/
+**/Pods/
+**/ios/
+**/android/
+!android/app/src/main/assets/**
+
+# Build çıktıları ve cache dosyaları
+*.apk
+*.aab
+*.ipa
+*.app
+*.exe
+*.dll
+*.dSYM/

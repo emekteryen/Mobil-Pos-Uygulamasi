@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmekPos.stokTakip"
+             Title="stokTakip">
+    <VerticalStackLayout>
+        <CollectionView x:Name="ProductCollectionView" ItemsSource="{Binding stoklistesi}" BackgroundColor="White" 
+                 HeightRequest="200" Margin="0,10,0,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Oval Kenar için Frame Kullanımı -->
+                    <Frame BackgroundColor="White" CornerRadius="15" BorderColor="Gray" Padding="10" Margin="5">
+                        <StackLayout Orientation="Vertical">
+                            <!-- Ürün Bilgileri -->
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <!-- Ürün Adı -->
+                                <Label Text="{Binding ProductName}" FontSize="16" VerticalOptions="Center" />
+                                <Label Text="{Binding ProductPrice, StringFormat='₺{0:F2}'}" FontSize="16" VerticalOptions="Center" />
+                                <!-- Adet Bilgisi -->
+                                <Label Text="Adet:" FontSize="16" VerticalOptions="Center" />
+                                <Label Text="{Binding Quantity}" FontSize="16" VerticalOptions="Center" />
+
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

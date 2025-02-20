@@ -1,0 +1,36 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmekPos.SatisGecmisi"
+             Title="Satış Geçmişi">
+
+    <StackLayout Padding="10" Spacing="10">
+        <!-- Tarih Girişi -->
+        <Label Text="Tarih (GG.AA.YYYY):" FontSize="Medium" />
+        <Entry x:Name="DateEntry" Placeholder="Örn: 13.12.2024" Keyboard="Text" />
+
+        <!-- Fiş Bilgileri -->
+        <Label x:Name="FisInfoLabel" Text="Fiş Bilgileri Burada Gözükecek" FontSize="Large" TextColor="Black" HorizontalOptions="Center" />
+
+        <!-- Ürün Listesi -->
+        <CollectionView x:Name="ProductsCollectionView" HeightRequest="200">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal" Padding="5">
+                        <Label Text="{Binding UrunAdi}" FontSize="Medium" />
+                        <Label Text="{Binding Adet}" FontSize="Medium" HorizontalOptions="EndAndExpand" />
+                        <Label Text="{Binding BirimFiyat, StringFormat='₺{0:F2}'}" FontSize="Medium" HorizontalOptions="End" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Navigasyon Okları -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
+            <Button Text="⬅️ Önceki" Clicked="PreviousFis_Clicked" />
+            <Button Text="Sonraki ➡️" Clicked="NextFis_Clicked" />
+        </StackLayout>
+
+        <!-- Ara Butonu -->
+        <Button Text="Ara" Clicked="SearchFisByDate_Clicked" BackgroundColor="#2196F3" TextColor="White" />
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,19 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmekPos.Yedekleme"
+             Title="Yedekleme">
+
+    <StackLayout Padding="10" Spacing="10">
+        <!-- Başlık -->
+        <Label Text="Yedekleme İşlemleri" FontSize="Large" HorizontalOptions="Center" />
+
+        <!-- Yedekleme Butonu -->
+        <Button Text="Verileri Yedekle (XML)" Clicked="BackupToXml_Clicked" BackgroundColor="#4CAF50" TextColor="White" />
+
+        <!-- Geri Yükleme Butonu -->
+        <Button Text="Verileri Geri Yükle (XML)" Clicked="RestoreFromXml_Clicked" BackgroundColor="#FF5722" TextColor="White" />
+
+        <!-- Durum Mesajı -->
+        <Label x:Name="StatusLabel" Text="Durum: Bekleniyor..." FontSize="Medium" TextColor="Gray" HorizontalOptions="Center" />
+    </StackLayout>
+</ContentPage>

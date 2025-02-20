@@ -1,0 +1,76 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             x:Class="EmekPos.MainPage">
+
+    <!-- Dikey düzen için ana StackLayout -->
+    <StackLayout Padding="10" Spacing="20">
+
+        <!-- Kamera Kontrol Butonları -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="15" Margin="0,10,0,0">
+            <Button Text="Kamerayı Aç" Clicked="OpenCamera_Clicked" HorizontalOptions="CenterAndExpand" />
+            
+        </StackLayout>
+        <ScrollView>
+            <Grid x:Name="ProductGrid" ColumnSpacing="10" RowSpacing="10" Padding="10">
+                <!-- Ürünler Dinamik Olarak Yüklenecek -->
+            </Grid>
+        </ScrollView>
+
+        <!-- Kamera Görüntüsü -->
+        <StackLayout x:Name="BarcodeViewLayout" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="15" Margin="0,150,0,0">
+            <ContentView HeightRequest="250" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand">
+                <zxing:CameraBarcodeReaderView
+                    x:Name="barcodeView"
+                    BarcodesDetected="BarcodesDetected"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    IsDetecting="True"
+                    CameraLocation="Rear" />
+            </ContentView>
+        </StackLayout>
+
+        <!-- Barkodla Okutulan Ürünler Listesi -->
+        <CollectionView x:Name="ProductCollectionView" ItemsSource="{Binding ScannedProducts}" BackgroundColor="White" 
+                        HeightRequest="200" Margin="0,10,0,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Oval Kenar için Frame Kullanımı -->
+                    <Frame BackgroundColor="White" CornerRadius="15" BorderColor="Gray" Padding="10" Margin="5">
+                        <StackLayout Orientation="Vertical">
+                            <!-- Ürün Bilgileri -->
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <!-- Ürün Adı -->
+                                <Label Text="{Binding ProductName}" FontSize="16" VerticalOptions="Center" />
+                                <Label Text="{Binding ProductPrice, StringFormat='₺{0:F2}'}" FontSize="16" VerticalOptions="Center" />
+                                <!-- Adet Bilgisi -->
+                                <Label Text="Adet:" FontSize="16" VerticalOptions="Center" />
+                                <Label Text="{Binding Quantity}" FontSize="16" VerticalOptions="Center" />
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                    <Label Text="Toplam:" FontSize="16" VerticalOptions="Center" />
+                                    <Label Text="{Binding TotalPrice, StringFormat='₺{0:F2}'}" FontSize="16" VerticalOptions="Center" />
+                                </StackLayout>
+
+                            </StackLayout>
+
+                            <!-- İşlem Butonları -->
+                            <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,5,0,0">
+                                <Button Text="+" FontSize="14" Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UpdateQuantityCommand}" CommandParameter="{Binding}" />
+                                <Button Text="-" FontSize="14" Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DecreaseQuantityCommand}" CommandParameter="{Binding}" />
+                                <Button Text="Sil" FontSize="14" BackgroundColor="Red" TextColor="White" Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteCommand}" CommandParameter="{Binding}" />
+
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Toplam Tutar -->
+        <Label Text="{Binding TotalPrice, StringFormat='Toplam: ₺{0:F2}'}" FontSize="18" HorizontalOptions="Center" Margin="0,10,0,0" />
+
+        <!-- Satışı Tamamla Butonu -->
+        <Button Text="Satışı Tamamla" Clicked="CompleteSaleButton_Clicked" BackgroundColor="Green" TextColor="White" FontSize="18" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" />
+    </StackLayout>
+</ContentPage>

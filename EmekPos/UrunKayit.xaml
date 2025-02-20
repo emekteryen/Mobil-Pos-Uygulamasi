@@ -1,0 +1,48 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             x:Class="EmekPos.UrunKayit"
+             Title="Ürün Kayıt">
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="10">
+        <!-- Kamera ve Kontroller -->
+        <Grid x:Name="CameraGrid" IsVisible="False">
+            <zxing:CameraBarcodeReaderView x:Name="barcodeView"
+                                           IsDetecting="True"
+                                           BarcodesDetected="BarcodesDetected"
+                                           HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="FillAndExpand" />
+            <Button Text="Kamerayı Kapat"
+                    VerticalOptions="End"
+                    HorizontalOptions="Center"
+                    Clicked="CloseCamera_Clicked"
+                    Margin="10"/>
+        </Grid>
+
+        <!-- Üstteki Düğmeler -->
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Start">
+            <Button Text="Kamerayı Aç" Clicked="OpenCamera_Clicked" />
+        </StackLayout>
+
+        <!-- Ürün Bilgi Alanı -->
+        <StackLayout Grid.Row="1" Spacing="10" VerticalOptions="Start">
+            <Label Text="Barkod:" />
+            <Entry x:Name="barcodeEntry" Placeholder="Barkod" />
+            <Label Text="Ürün Adı:" />
+            <Entry x:Name="productNameEntry" Placeholder="Ürün adı" />
+            <Label Text="Fiyat:" />
+            <Entry x:Name="priceEntry" Keyboard="Numeric" Placeholder="₺0.00" />
+            <Label Text="Adet:" />
+            <Entry x:Name="quantityEntry" Keyboard="Numeric" Placeholder="0" />
+        </StackLayout>
+
+        <!-- Kaydet Butonu -->
+        <Button Grid.Row="2" Text="Kaydet"
+                Clicked="SaveProduct_Clicked"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Margin="10"/>
+    </Grid>
+</ContentPage>
